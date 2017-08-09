@@ -134,7 +134,7 @@
 		};
 		
 		$('#email_select').change(function(){
-			$('#email_select option:selected' ).each(function(){
+			$('#email_select option:selected').each(function(){
 				if($(this).val()=='1'){//집접 입력일경우
 					$('#email2').val('');
 					$('#email2').attr("disabled",false) // 활성화
@@ -193,7 +193,7 @@
 				var idcheck =false;
 			$.ajax({
 				type:"post",
-				url:"idcheck.jsp",
+				url:"../login/idcheck.jsp",
 				data:{
 					checkid:$('#id').val(),
 				},

@@ -62,21 +62,15 @@ public class MemberDto implements Serializable {
 
 	
 
-	public MemberDto(int seq, String name, String id, String pwd, String phone, String email, String addrNum,
-			String addr1, String addr2, String gender, int auth) {
-		super();
-		this.seq = seq;
-		this.name = name;
-		this.id = id;
-		this.pwd = pwd;
-		this.phone = phone;
-		this.email = email;
-		this.addrNum = addrNum;
-		this.addr1 = addr1;
-		this.addr2 = addr2;
-		this.gender = gender;
-		this.auth = auth;
-	}
+
+   public MemberDto(String name, String pwd, String id, String img, String gender, int auth) {
+      this.name = name;
+      this.pwd = pwd;
+      this.id = id;
+      this.img = img;
+      this.gender = gender;
+      this.auth = auth;
+   }
 
 	public int getseq() {
 		return seq;
