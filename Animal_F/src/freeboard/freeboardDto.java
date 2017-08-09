@@ -19,6 +19,8 @@ import java.io.Serializable;
 		ID VARCHAR2(50) NOT NULL,
 		NAME VARCHAR2(50) NOT NULL,
 		REACOUNT NUMBER(8) NOT NULL,
+		DEL NUMBER(1) NOT NULL,
+		AUTH NUMBER(1) NOT NULL,
 		IMAGENAME VARCHAR2(50),
 		WDATE DATE NOT NULL,
 		TITLE VARCHAR2(200) NOT NULL,
@@ -49,6 +51,8 @@ public class freeboardDto implements Serializable {
 	
 	int seq;			// 글 고유번호
 	String readcount;	// 조회수
+	int del;			// 글 삭제여부
+	int auth;			// 관리자 인지 아닌지
 	
 	String imageName;	// 이미지 등록이름
 	String wdate;		// 작성일

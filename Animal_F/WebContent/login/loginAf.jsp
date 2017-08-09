@@ -23,7 +23,7 @@
       %>
       <script type="text/javascript">
          alert("안녕하세요 <%=mem.getId()%>님");
-        location.href = '../indexx.jsp';
+        location.href = '../main/index.jsp';
       </script>
    
    <%

@@ -14,15 +14,22 @@ public class MemberDao implements iMemberDao {
 	private boolean isS = true;
 
 	public static MemberDao getInstance() {
+	
 		if (memberDao == null) {
 			memberDao = new MemberDao();
 		}
 		return memberDao;
 	}
 
-	public MemberDao() {
+	private MemberDao() {
+		
+	
+		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+		
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -55,7 +62,7 @@ public class MemberDao implements iMemberDao {
 			System.out.println(dto.toString());
 			
 			count = psmt.executeUpdate();
-			// update ½ÇÇà È½¼ö
+			// update ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½
 			System.out.println("addmember 3");
 
 		} catch (SQLException e) {
@@ -111,6 +118,45 @@ public class MemberDao implements iMemberDao {
 		
 		return chk;
 	}
+	
+	@Override
+	   public MemberDto login(MemberDto dto) {
+	      String sql  = " SELECT ID,NAME,IMG,GENDER,AUTH FROM A_MEMBER WHERE ID=? AND PWD=? ";
+	      Connection conn = null;
+	      PreparedStatement psmt = null;
+	      ResultSet rs = null;
+	      MemberDto mem = null;
+	      
+	      try {
+	         conn = getConnection();
+	         psmt = conn.prepareStatement(sql);
+	         psmt.setString(1, dto.getId());
+	         psmt.setString(2, dto.getPwd());
+	         
+	         
+	         rs = psmt.executeQuery();
+	         
+	         while(rs.next()){
+	            String id = rs.getString(1);
+	            String name = rs.getString(2);
+	            String img = rs.getString(3);
+	            String gender = rs.getString(4);
+	            int auth = rs.getInt(5);
+	            
+	            System.out.println(id+name+img+gender+auth);
+	            mem = new MemberDto(name, null, id, img, gender, auth);
+	         }      
+	         
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }finally{
+	         close(conn, psmt, rs);
+	      }
+	            
+	      return mem;
+	   }
+	
 
 	public void log(String msg) {
 		if (isS) {
@@ -139,11 +185,14 @@ public class MemberDao implements iMemberDao {
 
 	public Connection getConnection() throws SQLException {
 
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String url = "jdbc:oracle:thin:@192.168.10.22:1521:xe";
 		String user = "hr";
 		String pass = "hr";
 		Connection conn = DriverManager.getConnection(url, user, pass);
 
+		
 		return conn;
 	}
+
+	
 }

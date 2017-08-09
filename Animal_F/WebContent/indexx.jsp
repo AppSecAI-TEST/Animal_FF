@@ -18,9 +18,11 @@ System.out.println(name);
 if(dto != null){
 	name = dto.getName();
 	System.out.println(name);
+}else{
+	
 }
 %>
-
+AAAAAAAA
 <%=name %>님안녕하세요
 </body>
 </html>
