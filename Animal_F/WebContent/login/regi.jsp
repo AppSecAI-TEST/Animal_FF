@@ -134,8 +134,8 @@
 		};
 		
 		$('#email_select').change(function(){
-			$('#email_select option:selected').each(function(){
-				if($(this).val()=='1'){//집접 입력일경우
+			$('#email_select option:selected' ).each(function(){
+				if($(this).val()=='1'){//직접 입력일경우
 					$('#email2').val('');
 					$('#email2').attr("disabled",false) // 활성화
 					}else{

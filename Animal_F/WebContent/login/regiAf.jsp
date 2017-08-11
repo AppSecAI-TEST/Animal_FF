@@ -32,7 +32,7 @@
 	%>
 		<script type="text/javascript">
 			alert("성공적으로 가입하셨습니다");
-			location.href = 'index.jsp';
+			location.href = '../main/index.jsp';
 		</script>
 	<%} else {	%>
 		<script type="text/javascript">

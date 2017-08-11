@@ -4,9 +4,9 @@ cascade constraint;
 drop sequence SEQ_MEMBER;
 
 create table A_MEMBER(
-   SEQ NUMBER(8) PRIMARY KEY,
+   SEQ NUMBER(8) NOT NULL,
    NAME VARCHAR2(50) NOT NULL,
-   ID VARCHAR2(50) NOT NULL,
+   ID VARCHAR2(50) PRIMARY KEY,
    PWD VARCHAR2(50) NOT NULL,
    PHONE VARCHAR2(50) NOT NULL,
    EMAIL VARCHAR2(50) NOT NULL,
@@ -27,21 +27,21 @@ import java.io.Serializable;
 
 public class MemberDto implements Serializable {
 
-	private int seq; // È¸¿ø¹øÈ£
+	private int seq; // È¸ï¿½ï¿½ï¿½ï¿½È£
 	private String name;
 	private String id;
 	private String pwd;
 	private String phone;
 	private String email;
-	private String img; // ÀÌ¹ÌÁö °æ·Î (ÇÁ·ÎÇÊ»çÁø)
-	private String addrNum; // ¿ìÆí¹øÈ£
-	private String addr1; // ÁÖ¼Ò (¿ìÆí¹øÈ£¿Í ÁÖ¼Ò´Â ³ªÁß¿¡ ³ÖÀ»¿¹Á¤)
-	private String addr2; // »ó¼¼ ÁÖ¼Ò
+	private String img; // ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½Ê»ï¿½ï¿½ï¿½)
+	private String addrNum; // ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	private String addr1; // ï¿½Ö¼ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ö¼Ò´ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+	private String addr2; // ï¿½ï¿½ ï¿½Ö¼ï¿½
 	private String gender;
-	private int auth; // ±ÇÇÑ
+	private int auth; // ï¿½ï¿½ï¿½ï¿½
 
-	public MemberDto() {
-	}
+   public MemberDto() {
+   }
 
 	public MemberDto(int seq, String name, String id, String pwd, String phone, String email, String img,
 			String addrNum, String addr1, String addr2, String gender, int auth) {
@@ -62,6 +62,21 @@ public class MemberDto implements Serializable {
 
 	
 
+   public MemberDto(int seq, String name, String id, String pwd, String phone, String email, String addrNum, String addr1,
+		String addr2, String gender, int auth) {
+	super();
+	this.seq = seq;
+	this.name = name;
+	this.id = id;
+	this.pwd = pwd;
+	this.phone = phone;
+	this.email = email;
+	this.addrNum = addrNum;
+	this.addr1 = addr1;
+	this.addr2 = addr2;
+	this.gender = gender;
+	this.auth = auth;
+}
 
    public MemberDto(String name, String pwd, String id, String img, String gender, int auth) {
       this.name = name;

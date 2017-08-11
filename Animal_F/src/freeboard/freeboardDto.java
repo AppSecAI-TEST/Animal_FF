@@ -18,7 +18,7 @@ import java.io.Serializable;
 		SEQ NUMBER(8) PRIMARY KEY,
 		ID VARCHAR2(50) NOT NULL,
 		NAME VARCHAR2(50) NOT NULL,
-		REACOUNT NUMBER(8) NOT NULL,
+		READCOUNT NUMBER(8) NOT NULL,
 		DEL NUMBER(1) NOT NULL,
 		AUTH NUMBER(1) NOT NULL,
 		IMAGENAME VARCHAR2(50),
@@ -50,7 +50,7 @@ public class freeboardDto implements Serializable {
 	String name;		// 작성자 이름
 	
 	int seq;			// 글 고유번호
-	String readcount;	// 조회수
+	int readcount;		// 조회수
 	int del;			// 글 삭제여부
 	int auth;			// 관리자 인지 아닌지
 	
@@ -63,12 +63,14 @@ public class freeboardDto implements Serializable {
 	
 	public freeboardDto() {	}
 
-	public freeboardDto(String id, String name, int seq, String readcount, String imageName, String wdate, String title,
-			String content, String animal_kind) {
+	public freeboardDto(String id, String name, int seq, int readcount, int del, int auth, String imageName,
+			String wdate, String title, String content, String animal_kind) {
 		this.id = id;
 		this.name = name;
 		this.seq = seq;
 		this.readcount = readcount;
+		this.del = del;
+		this.auth = auth;
 		this.imageName = imageName;
 		this.wdate = wdate;
 		this.title = title;
@@ -76,9 +78,11 @@ public class freeboardDto implements Serializable {
 		this.animal_kind = animal_kind;
 	}
 	
-	public freeboardDto(String id, String name, String imageName, String title, String content, String animal_kind) {
+	public freeboardDto(String id, String name, int readcount, int auth, String imageName,String title, String content, String animal_kind) {
 		this.id = id;
 		this.name = name;
+		this.readcount = readcount;
+		this.auth = auth;
 		this.imageName = imageName;
 		this.title = title;
 		this.content = content;
@@ -109,12 +113,28 @@ public class freeboardDto implements Serializable {
 		this.seq = seq;
 	}
 
-	public String getReadcount() {
+	public int getReadcount() {
 		return readcount;
 	}
 
-	public void setReadcount(String readcount) {
+	public void setReadcount(int readcount) {
 		this.readcount = readcount;
+	}
+
+	public int getDel() {
+		return del;
+	}
+
+	public void setDel(int del) {
+		this.del = del;
+	}
+
+	public int getAuth() {
+		return auth;
+	}
+
+	public void setAuth(int auth) {
+		this.auth = auth;
 	}
 
 	public String getImageName() {
@@ -159,10 +179,11 @@ public class freeboardDto implements Serializable {
 
 	@Override
 	public String toString() {
-		return "freeboardDto [id=" + id + ", name=" + name + ", seq=" + seq + ", readcount=" + readcount
-				+ ", imageName=" + imageName + ", wdate=" + wdate + ", title=" + title + ", content=" + content
-				+ ", animal_kind=" + animal_kind + "]";
+		return "freeboardDto [id=" + id + ", name=" + name + ", seq=" + seq + ", readcount=" + readcount + ", del="
+				+ del + ", auth=" + auth + ", imageName=" + imageName + ", wdate=" + wdate + ", title=" + title
+				+ ", content=" + content + ", animal_kind=" + animal_kind + "]";
 	}
+	
 	
 	
 	
